@@ -2,14 +2,14 @@ defmodule SlackWebhook.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :slack_webhook,
+    [app: :slack_hook,
      description: "Sends simple messages to Slack channel using webhook API.",
-     version: "0.1.0",
+     version: "0.2.1",
      elixir: "~> 1.0",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     package: package,
-     deps: deps]
+     package: package(),
+     deps: deps()]
   end
 
   # Configuration for the OTP application
@@ -29,17 +29,20 @@ defmodule SlackWebhook.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    [{:httpoison, "~> 0.9"},
-     {:earmark, "~> 0.2.1", only: :dev},
-     {:ex_doc, "~> 0.12.0", only: :dev}]
+    [
+     {:jason, "~> 1.1"},
+     {:httpoison, "~> 1.6.0"},
+     {:earmark, "~> 1.2", only: :dev},
+     {:ex_doc, "~> 0.18", only: :dev}
+    ]
   end
 
   defp package do
     [
-      licenses: ["CC0"],
-      contributors: ["Remigiusz Jackowski"],
+      licenses: ["MIT"],
+      contributors: ["Mika Kalathil"],
       links: %{
-        "GitHub" => "https://github.com/remiq/slack_webhook"
+        "GitHub" => "https://github.com/mikaak/slack_hook"
       }
     ]
   end
